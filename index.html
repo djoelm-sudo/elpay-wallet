@@ -1,59 +1,95 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ELPAY Wallet</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#0B0F14;color:#fff;min-height:100vh;overflow-x:hidden}.bg{position:fixed;inset:0;background:radial-gradient(circle at 50% -10%,rgba(24,227,140,.22),transparent 36%),radial-gradient(circle at 100% 0%,rgba(24,227,140,.12),transparent 25%),#0B0F14;z-index:-1}.app{max-width:430px;margin:0 auto;padding:18px 18px 92px}.top{display:flex;align-items:center;justify-content:space-between;margin:8px 0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#101820,#05110c);border:1px solid rgba(24,227,140,.45);box-shadow:0 0 24px rgba(24,227,140,.25);display:flex;align-items:center;justify-content:center;font-weight:900;color:#18E38C}.brand h1{font-size:18px;margin:0}.muted{color:#8F9AA8}.hello{font-size:26px;font-weight:800;line-height:1.15;margin:4px 0 18px}.card{background:linear-gradient(180deg,rgba(26,33,41,.92),rgba(13,18,25,.92));border:1px solid rgba(255,255,255,.07);border-radius:28px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.28);margin-bottom:16px}.balance-label{font-size:14px;color:#95A0AD}.balance{font-size:34px;font-weight:900;margin:9px 0 4px;letter-spacing:-.8px}.rub{font-size:18px;color:#18E38C;font-weight:700}.rate{display:flex;justify-content:space-between;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-size:14px;color:#A9B2BE}.main-btn{width:100%;border:none;border-radius:22px;background:#18E38C;color:#04110B;padding:18px 16px;font-size:18px;font-weight:900;box-shadow:0 0 35px rgba(24,227,140,.28);margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.action{background:#121922;border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:17px;text-align:center;font-weight:800}.action span{display:block;font-size:24px;margin-bottom:8px}.title{font-size:18px;font-weight:850;margin:24px 0 12px}.op{display:flex;align-items:center;justify-content:space-between;background:#111821;border:1px solid rgba(255,255,255,.055);border-radius:18px;padding:14px;margin-bottom:10px}.op-left{display:flex;gap:12px;align-items:center}.op-icon{width:36px;height:36px;border-radius:13px;background:rgba(24,227,140,.13);display:flex;align-items:center;justify-content:center}.green{color:#18E38C}.red{color:#ff6b6b}.screen{display:none}.screen.active{display:block}.qrbox{height:310px;border-radius:30px;background:#111821;border:1px solid rgba(24,227,140,.35);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:inset 0 0 45px rgba(24,227,140,.06);margin:18px 0}.scan{width:190px;height:190px;border-radius:24px;border:3px solid #18E38C;position:relative;display:flex;align-items:center;justify-content:center;font-size:56px}.profile-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(12,17,24,.96);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-around;padding:10px 0 20px}.nav button{background:none;border:none;color:#8F9AA8;font-size:11px;font-weight:700}.nav button.active{color:#18E38C}.nav b{display:block;font-size:22px;margin-bottom:3px}.pill{display:inline-flex;gap:8px;align-items:center;background:rgba(24,227,140,.12);color:#18E38C;border:1px solid rgba(24,227,140,.24);border-radius:999px;padding:8px 12px;font-size:13px;font-weight:800}.wallet-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#111821;border:1px solid rgba(255,255,255,.06);border-radius:20px;margin-bottom:10px}.coin{display:flex;gap:12px;align-items:center}.coin-logo{width:42px;height:42px;border-radius:16px;background:#18E38C;color:#04110B;display:flex;align-items:center;justify-content:center;font-weight:900}.small{font-size:13px;color:#8F9AA8}.hidden{filter:blur(7px)}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELPAY Wallet</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#05070A;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.app{max-width:430px;margin:0 auto;min-height:100vh;padding:28px 22px 95px;background:radial-gradient(circle at top,#123d2b 0,#05070A 38%)}
+.header{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.logo{width:62px;height:62px;border-radius:20px;border:1px solid #18E38C;display:flex;align-items:center;justify-content:center;color:#18E38C;font-weight:900;font-size:24px;box-shadow:0 0 28px #18e38c55}
+.name{font-size:28px;font-weight:800}
+.sub{color:#8d96a3;font-size:15px;margin-top:3px}
+.hello{font-size:34px;font-weight:900;line-height:1.12;margin:26px 0}
+.card{background:linear-gradient(180deg,#151b24,#0e131a);border:1px solid #26313c;border-radius:28px;padding:24px;box-shadow:0 0 35px #18e38c18}
+.label{color:#9aa4b2;font-size:16px}
+.balance{font-size:38px;font-weight:900;margin:18px 0 6px}
+.rub{font-size:22px;color:#18E38C;font-weight:800}
+.line{height:1px;background:#27313b;margin:24px 0}
+.rate{display:flex;justify-content:space-between;color:#a6afbb;font-size:17px}
+.rate b{color:#dfe5ec}
+.pay{margin:28px 0 22px;width:100%;height:72px;border:0;border-radius:28px;background:#18E38C;color:#03110b;font-size:22px;font-weight:900;box-shadow:0 0 34px #18e38c44}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.action{height:118px;border-radius:24px;background:#111821;border:1px solid #26313c;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.icon{font-size:28px;color:#18E38C;margin-bottom:12px}
+.title{font-size:22px;font-weight:900;margin:28px 0 14px}
+.op{display:flex;justify-content:space-between;align-items:center;padding:18px;background:#10161e;border:1px solid #222d38;border-radius:20px;margin-bottom:10px}
+.op small{color:#8d96a3}
+.green{color:#18E38C;font-weight:800}
+.red{color:#ff6b6b;font-weight:800}
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:auto;background:#090d12;border-top:1px solid #1e2730;display:flex;justify-content:space-around;padding:12px 0 18px}
+.nav div{color:#7d8794;font-size:13px;text-align:center;font-weight:700}
+.nav .active{color:#18E38C}
+</style>
 </head>
 <body>
-<div class="bg"></div>
 <div class="app">
-  <section id="home" class="screen active">
-    <div class="top"><div class="brand"><div class="logo">EP</div><div><h1>ELPAY Wallet</h1><div class="small">Mini App</div></div></div><div class="pill">Demo</div></div>
-    <div class="hello">Здравствуйте,<br><span id="username">Джохар</span> 👋</div>
-    <div class="card"><div class="balance-label">Общий баланс</div><div class="balance">10 250.52 USDT</div><div class="rub">≈ 807 640 ₽</div><div class="rate"><span>Курс USDT</span><b>78.79 ₽</b></div></div>
-    <button class="main-btn" onclick="go('qr')">📱 Оплатить по QR</button>
-    <div class="grid"><div class="action"><span>➕</span>Пополнить</div><div class="action"><span>📤</span>Перевести</div><div class="action"><span>📥</span>Получить</div><div class="action"><span>🔄</span>Обмен</div></div>
-    <div class="title">Последние операции</div>
-    <div class="op"><div class="op-left"><div class="op-icon">📱</div><div><b>QR-оплата</b><div class="small">Пятёрочка</div></div></div><b class="red">-32.51 USDT</b></div>
-    <div class="op"><div class="op-left"><div class="op-icon">➕</div><div><b>Пополнение</b><div class="small">TRC20</div></div></div><b class="green">+500 USDT</b></div>
-  </section>
+  <div class="header">
+    <div class="logo">EP</div>
+    <div>
+      <div class="name">ELPAY Wallet</div>
+      <div class="sub">Плати криптой. Оплачивай в рублях.</div>
+    </div>
+  </div>
 
-  <section id="qr" class="screen">
-    <div class="top"><div><h1>QR-оплата</h1><div class="small">Наведите камеру на QR продавца</div></div><div class="pill">СБП</div></div>
-    <div class="qrbox"><div class="scan">▦</div><p class="muted">Сканер QR будет подключен позже</p></div>
-    <button class="main-btn" onclick="alert('Демо: оплата 2 560 ₽ / 32.51 USDT')">Оплатить тест</button>
-    <div class="card"><b>Как будет работать</b><p class="muted">Пользователь сканирует QR, подтверждает сумму, сервис списывает USDT и проводит оплату.</p></div>
-  </section>
+  <div class="hello">Здравствуйте,<br>Джохар</div>
 
-  <section id="wallet" class="screen">
-    <div class="top"><div><h1>Кошелек</h1><div class="small">Ваши активы</div></div></div>
-    <div class="wallet-item"><div class="coin"><div class="coin-logo">T</div><div><b>USDT</b><div class="small">TRC20</div></div></div><div><b>10 250.52</b><div class="small">≈ 807 640 ₽</div></div></div>
-    <div class="wallet-item"><div class="coin"><div class="coin-logo">R</div><div><b>RUB</b><div class="small">Российский рубль</div></div></div><div><b>0.00</b></div></div>
-    <button class="main-btn">➕ Пополнить USDT</button>
-  </section>
+  <div class="card">
+    <div class="label">Общий баланс</div>
+    <div class="balance">10 250.52 USDT</div>
+    <div class="rub">≈ 807 640 ₽</div>
+    <div class="line"></div>
+    <div class="rate">
+      <span>Курс USDT</span>
+      <b>78.79 ₽</b>
+    </div>
+  </div>
 
-  <section id="history" class="screen">
-    <div class="top"><div><h1>История</h1><div class="small">Все операции</div></div></div>
-    <div class="op"><div class="op-left"><div class="op-icon">📱</div><div><b>QR-оплата</b><div class="small">Сегодня, 14:21</div></div></div><b class="red">-32.51</b></div>
-    <div class="op"><div class="op-left"><div class="op-icon">➕</div><div><b>Пополнение</b><div class="small">Вчера, TRC20</div></div></div><b class="green">+500</b></div>
-    <div class="op"><div class="op-left"><div class="op-icon">🔄</div><div><b>Обмен</b><div class="small">USDT → RUB</div></div></div><b>-120</b></div>
-  </section>
+  <button class="pay">Оплатить по QR</button>
 
-  <section id="profile" class="screen">
-    <div class="top"><div><h1>Профиль</h1><div class="small" id="tgid">Telegram Mini App</div></div></div>
-    <div class="card"><b id="profileName">Джохар</b><p class="muted">ELPAY Wallet Demo Account</p></div>
-    <div class="profile-row"><b>Безопасность</b><span>›</span></div><div class="profile-row"><b>Верификация</b><span>›</span></div><div class="profile-row"><b>Поддержка</b><span>›</span></div><div class="profile-row"><b>Настройки</b><span>›</span></div>
-  </section>
+  <div class="grid">
+    <div class="action"><div class="icon">＋</div>Пополнить</div>
+    <div class="action"><div class="icon">↑</div>Перевести</div>
+    <div class="action"><div class="icon">↓</div>Получить</div>
+    <div class="action"><div class="icon">↻</div>Обмен</div>
+  </div>
+
+  <div class="title">Последние операции</div>
+
+  <div class="op">
+    <div>QR-оплата<br><small>Сегодня</small></div>
+    <div class="red">−32.51 USDT</div>
+  </div>
+
+  <div class="op">
+    <div>Пополнение<br><small>TRC20</small></div>
+    <div class="green">+500 USDT</div>
+  </div>
+
+  <div class="op">
+    <div>Перевод<br><small>USDT</small></div>
+    <div class="red">−120 USDT</div>
+  </div>
 </div>
-<nav class="nav"><button class="active" onclick="go('home',this)"><b>🏠</b>Главная</button><button onclick="go('wallet',this)"><b>💼</b>Кошелек</button><button onclick="go('qr',this)"><b>📱</b>QR</button><button onclick="go('history',this)"><b>📄</b>История</button><button onclick="go('profile',this)"><b>👤</b>Профиль</button></nav>
-<script>
-  const tg = window.Telegram?.WebApp; if(tg){tg.ready(); tg.expand(); tg.setHeaderColor('#0B0F14'); tg.setBackgroundColor('#0B0F14'); const u=tg.initDataUnsafe?.user; if(u){const name=u.first_name||'Пользователь'; document.getElementById('username').textContent=name; document.getElementById('profileName').textContent=name; document.getElementById('tgid').textContent='ID: '+u.id;}}
-  function go(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); else document.querySelectorAll('.nav button')[2].classList.add('active'); window.scrollTo(0,0)}
-</script>
+
+<div class="nav">
+  <div class="active">⌂<br>Главная</div>
+  <div>▣<br>Кошелек</div>
+  <div>▦<br>QR</div>
+  <div>≡<br>История</div>
+  <div>●<br>Профиль</div>
+</div>
 </body>
 </html>
